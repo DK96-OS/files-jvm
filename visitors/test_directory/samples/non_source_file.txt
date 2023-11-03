@@ -1,0 +1,2 @@
+## A non source file
+This file is here to participate in the tests, as a file that is not included in source processing.
