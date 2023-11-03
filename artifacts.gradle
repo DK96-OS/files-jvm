@@ -1,0 +1,6 @@
+def commonArtifactVersion = "0.1"
+ext {
+    artifactVersions = [
+            visitors: commonArtifactVersion,
+    ]
+}

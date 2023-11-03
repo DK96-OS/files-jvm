@@ -1,6 +1,6 @@
 pluginManagement {
 	plugins {
-		id "org.jetbrains.kotlin.jvm" version "1.9.10"
+		id "org.jetbrains.kotlin.jvm" version "1.9.20"
 	}
 	repositories {
 		google()
@@ -11,7 +11,7 @@ pluginManagement {
 	    gradlePluginPortal()
 	}
 }
-rootProject.name = "java-project"
+rootProject.name = "files-jvm"
 include(
-	//":module",
+	":visitors",
 )
