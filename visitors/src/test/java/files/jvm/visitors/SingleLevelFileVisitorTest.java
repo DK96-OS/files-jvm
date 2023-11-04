@@ -29,7 +29,7 @@ public final class SingleLevelFileVisitorTest {
 			mInstance.isValidDirectory
 		);
 		assertEquals(
-			6,
+			4,
 			mInstance.getDirectories().size()
 		);
 		assertEquals(
