@@ -11,6 +11,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 public abstract class SimplifiedFileVisitor
 	implements FileVisitor<Path> {
 
+	@ExcludeFromJacocoGeneratedReport
 	@Override
 	public FileVisitResult preVisitDirectory(
 		Path path,
@@ -20,6 +21,7 @@ public abstract class SimplifiedFileVisitor
 			: FileVisitResult.SKIP_SUBTREE;
 	}
 
+	@ExcludeFromJacocoGeneratedReport
 	@Override
 	public FileVisitResult visitFileFailed(
 		Path path,
@@ -30,6 +32,7 @@ public abstract class SimplifiedFileVisitor
 		return FileVisitResult.TERMINATE;
 	}
 
+	@ExcludeFromJacocoGeneratedReport
 	@Override
 	public FileVisitResult postVisitDirectory(
 		Path path,

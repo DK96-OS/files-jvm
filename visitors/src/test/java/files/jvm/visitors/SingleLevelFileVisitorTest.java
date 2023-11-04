@@ -55,4 +55,38 @@ public final class SingleLevelFileVisitorTest {
 		);
 	}
 
+	@Test
+	public void testConstructor_InvalidPath_Fails() throws IOException {
+		final Path invalidPath = Path.of("invalid_path");
+		mInstance = new SingleLevelFileVisitor(invalidPath);
+		assertFalse(
+			mInstance.isValidDirectory
+		);
+		assertEquals(
+			0,
+			mInstance.getDirectories().size()
+		);
+		assertEquals(
+			0,
+			mInstance.getFiles().size()
+		);
+	}
+
+	@Test
+	public void testConstructor_EmptyDirectory() throws IOException {
+		final Path path = testProjectDirectory.resolve("samples");
+		mInstance = new SingleLevelFileVisitor(path);
+		assertTrue(
+			mInstance.isValidDirectory
+		);
+		assertEquals(
+			0,
+			mInstance.getDirectories().size()
+		);
+		assertEquals(
+			1,
+			mInstance.getFiles().size()
+		);
+	}
+
 }
