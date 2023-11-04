@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
-          name: MT-JavaDocs
-          path: /home/runner/work/*/*/*/build/
+          name: Files-JavaDocs
+          path: /home/runner/work/*/*/*/build/docs/javadoc
           retention-days: 28
         timeout-minutes: 2
