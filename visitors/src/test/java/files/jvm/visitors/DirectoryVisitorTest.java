@@ -12,15 +12,15 @@ import java.nio.file.Path;
 
 /** Testing SingleLevelFileVisitor class.
  */
-public final class SingleLevelFileVisitorTest {
+public final class DirectoryVisitorTest {
 
 	private final Path testProjectDirectory = Path.of("test_directory");
 
-	private SingleLevelFileVisitor mInstance;
+	private DirectoryVisitor mInstance;
 
 	@Before
 	public void testSetup() throws IOException {
-		mInstance = new SingleLevelFileVisitor(testProjectDirectory);
+		mInstance = new DirectoryVisitor(testProjectDirectory);
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public final class SingleLevelFileVisitorTest {
 	@Test
 	public void testConstructor_FilePath_NotValidDirectory() throws IOException {
 		final Path filePath = Path.of("test_project/build.gradle");
-		mInstance = new SingleLevelFileVisitor(filePath);
+		mInstance = new DirectoryVisitor(filePath);
 		assertFalse(
 			mInstance.isValidDirectory
 		);
@@ -58,7 +58,7 @@ public final class SingleLevelFileVisitorTest {
 	@Test
 	public void testConstructor_InvalidPath_Fails() throws IOException {
 		final Path invalidPath = Path.of("invalid_path");
-		mInstance = new SingleLevelFileVisitor(invalidPath);
+		mInstance = new DirectoryVisitor(invalidPath);
 		assertFalse(
 			mInstance.isValidDirectory
 		);
@@ -75,7 +75,7 @@ public final class SingleLevelFileVisitorTest {
 	@Test
 	public void testConstructor_EmptyDirectory() throws IOException {
 		final Path path = testProjectDirectory.resolve("samples");
-		mInstance = new SingleLevelFileVisitor(path);
+		mInstance = new DirectoryVisitor(path);
 		assertTrue(
 			mInstance.isValidDirectory
 		);
@@ -86,6 +86,15 @@ public final class SingleLevelFileVisitorTest {
 		assertEquals(
 			1,
 			mInstance.getFiles().size()
+		);
+	}
+
+	@Test
+	public void testGetFilePaths_() {
+		final java.util.List<Path> pathList = mInstance.getFilePaths();
+		assertEquals(
+			5,
+			pathList.size()
 		);
 	}
 

@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Set;
 
 /** Visits Files and Directories in a single level,
- * records the files and directories that were found in a list.
+ * records the files and directories that were found.
  */
-public class SingleLevelFileVisitor {
+public class DirectoryVisitor {
 
 	/** Whether the Path given in the constructor is a valid directory.
 	 */
@@ -23,13 +23,16 @@ public class SingleLevelFileVisitor {
 
 	private final List<String> mFiles;
 
+	private final Path mPath;
+
 	/** Constructor.
 	 * @param path The path to visit.
 	 * @throws IOException Any Exception thrown while Visiting the Path.
 	 */
-	public SingleLevelFileVisitor(
+	public DirectoryVisitor(
 		final Path path
 	) throws IOException {
+		mPath = path;
 		if (!Files.isDirectory(path)) {
 			isValidDirectory = false;
 			mDirectories = null;
@@ -88,6 +91,13 @@ public class SingleLevelFileVisitor {
 		if (mFiles == null)
 			return Collections.emptyList();
 		return mFiles;
+	}
+
+	/** Obtain all files in this directory as a List of Paths.
+	 * @return A List of Paths, or an empty list.
+	 */
+	public List<Path> getFilePaths() {
+		return getFiles().stream().map(mPath::resolve).toList();
 	}
 
 }
