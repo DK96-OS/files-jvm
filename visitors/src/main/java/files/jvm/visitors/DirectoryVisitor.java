@@ -97,7 +97,24 @@ public class DirectoryVisitor {
 	 * @return A List of Paths, or an empty list.
 	 */
 	public List<Path> getFilePaths() {
-		return getFiles().stream().map(mPath::resolve).toList();
+		if (mFiles == null)
+			return Collections.emptyList();
+		return mFiles
+			.parallelStream()
+			.map(mPath::resolve)
+			.toList();
+	}
+
+	/** Obtain all Directories in this directory as a List of Paths.
+	 * @return A List of Paths, or an empty list.
+	 */
+	public List<Path> getDirectoryPaths() {
+		if (mDirectories == null)
+			return Collections.emptyList();
+		return mDirectories
+			.parallelStream()
+			.map(mPath::resolve)
+			.toList();
 	}
 
 }
