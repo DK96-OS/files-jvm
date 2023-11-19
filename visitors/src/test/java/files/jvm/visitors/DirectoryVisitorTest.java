@@ -9,12 +9,17 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 /** Testing SingleLevelFileVisitor class.
  */
 public final class DirectoryVisitorTest {
 
 	private final Path testProjectDirectory = Path.of("test_directory");
+
+	private final int numberOfSubDirectories = 4;
+
+	private final int numberOfFiles = 5;
 
 	private DirectoryVisitor mInstance;
 
@@ -29,11 +34,11 @@ public final class DirectoryVisitorTest {
 			mInstance.isValidDirectory
 		);
 		assertEquals(
-			4,
+			numberOfSubDirectories,
 			mInstance.getDirectories().size()
 		);
 		assertEquals(
-			5,
+			numberOfFiles,
 			mInstance.getFiles().size()
 		);
 	}
@@ -90,10 +95,19 @@ public final class DirectoryVisitorTest {
 	}
 
 	@Test
-	public void testGetFilePaths_() {
-		final java.util.List<Path> pathList = mInstance.getFilePaths();
+	public void testGetFilePaths_CorrectSize() {
+		final List<Path> pathList = mInstance.getFilePaths();
 		assertEquals(
-			5,
+			numberOfFiles,
+			pathList.size()
+		);
+	}
+
+	@Test
+	public void testGetDirectoryPaths_CorrectSize() {
+		final List<Path> pathList = mInstance.getDirectoryPaths();
+		assertEquals(
+			numberOfSubDirectories,
 			pathList.size()
 		);
 	}
