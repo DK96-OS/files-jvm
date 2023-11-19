@@ -78,9 +78,9 @@ public final class DirectoryVisitorTest {
 	}
 
 	@Test
-	public void testConstructor_EmptyDirectory() throws IOException {
-		final Path path = testProjectDirectory.resolve("samples");
-		mInstance = new DirectoryVisitor(path);
+	public void testConstructor_SampleDirectory_OnlyContainsSingleFile() throws IOException {
+		final Path testSampleDirectory = testProjectDirectory.resolve("samples");
+		mInstance = new DirectoryVisitor(testSampleDirectory);
 		assertTrue(
 			mInstance.isValidDirectory
 		);
@@ -104,11 +104,35 @@ public final class DirectoryVisitorTest {
 	}
 
 	@Test
+	public void testGetFilePaths_InvalidDirectory_ReturnsEmptyList() throws IOException {
+		final Path invalidPath = Path.of("invalid_path");
+		mInstance = new DirectoryVisitor(invalidPath);
+		assertFalse(
+			mInstance.isValidDirectory
+		);
+		assertEquals(
+			0, mInstance.getFilePaths().size()
+		);
+	}
+
+	@Test
 	public void testGetDirectoryPaths_CorrectSize() {
 		final List<Path> pathList = mInstance.getDirectoryPaths();
 		assertEquals(
 			numberOfSubDirectories,
 			pathList.size()
+		);
+	}
+
+	@Test
+	public void testGetDirectoryPaths_InvalidPath_ReturnsEmptyList() throws IOException {
+		final Path invalidPath = Path.of("invalid_path");
+		mInstance = new DirectoryVisitor(invalidPath);
+		assertFalse(
+			mInstance.isValidDirectory
+		);
+		assertEquals(
+			0, mInstance.getDirectoryPaths().size()
 		);
 	}
 
