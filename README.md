@@ -6,8 +6,12 @@ Each Module is available as an independent downloadable package that can be quic
 
 You can import any module into your project using Gradle or maven.
 
-Here is how to implement a package using Gradle.
+Here is how to implement a package using Gradle:
+
+1. Add this to your dependencies block:
 `implementation "io.github.dk96-os.files-jvm:visitors:$package_version"`
+
+2. Add the GitHub packages maven repository.
 
 ### Visitors Module
 The concept of a File Visitor is built into the Java Standard Library.
