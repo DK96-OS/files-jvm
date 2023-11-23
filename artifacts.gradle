@@ -1,4 +1,4 @@
-def commonArtifactVersion = "0.1"
+def commonArtifactVersion = "0.2"
 ext {
     artifactVersions = [
             visitors: commonArtifactVersion,
