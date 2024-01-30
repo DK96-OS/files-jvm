@@ -12,5 +12,6 @@ pluginManagement {
 }
 rootProject.name = "files-jvm"
 include(
+	":builders",
 	":visitors",
 )
