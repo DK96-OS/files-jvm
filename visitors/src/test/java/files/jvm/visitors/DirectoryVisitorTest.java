@@ -116,6 +116,15 @@ public final class DirectoryVisitorTest {
 	}
 
 	@Test
+	public void testGetFileStream_() {
+		final var pathList = mInstance.getFileStream();
+		assertEquals(
+			numberOfFiles,
+			pathList.toList().size()
+		);
+	}
+
+	@Test
 	public void testGetDirectoryPaths_CorrectSize() {
 		final List<Path> pathList = mInstance.getDirectoryPaths();
 		assertEquals(
@@ -133,6 +142,15 @@ public final class DirectoryVisitorTest {
 		);
 		assertEquals(
 			0, mInstance.getDirectoryPaths().size()
+		);
+	}
+
+	@Test
+	public void testGetDirectoryPathStream_() {
+		final var pathList = mInstance.getDirectoryPathStream();
+		assertEquals(
+			numberOfSubDirectories,
+			pathList.toList().size()
 		);
 	}
 
